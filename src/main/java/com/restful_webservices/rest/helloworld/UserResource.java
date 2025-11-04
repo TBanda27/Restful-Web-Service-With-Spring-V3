@@ -1,12 +1,16 @@
 package com.restful_webservices.rest.helloworld;
 
 import jakarta.validation.Valid;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
 public class UserResource {
@@ -23,8 +27,16 @@ public class UserResource {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieveUserById(@PathVariable("id") Integer id) {
-        return service.findById(id);
+    public EntityModel<User> retrieveUserById(@PathVariable("id") Integer id) {
+        User user = service.findById(id);
+        if  (user == null) {
+            throw new UserNotFoundException(String.format("User with id %d not found", id));
+        }
+        EntityModel<User> entityModel = EntityModel.of(user);
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(methodOn(this.getClass()).findAll());
+        entityModel.add(linkTo.withRel("all-users"));
+
+        return entityModel;
     }
 
     @PostMapping("/users")
