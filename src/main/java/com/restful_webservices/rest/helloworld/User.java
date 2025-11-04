@@ -1,5 +1,6 @@
 package com.restful_webservices.rest.helloworld;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,10 +12,11 @@ import java.time.LocalDate;
 public class User {
     private Integer id;
 
-    @Size(min = 3, max = 50)
+    @NotBlank(message = "Name cannot be empty")
+    @Size(min = 3, max = 50, message = "A Name should have minimum length of 3 characters")
     private String name;
 
-    @Past
+    @Past(message = "Birthdate should be a date in the past")
     private LocalDate birthDate;
 
     public User(Integer id, String name, LocalDate birthDate) {

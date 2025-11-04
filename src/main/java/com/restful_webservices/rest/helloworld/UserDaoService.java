@@ -36,7 +36,11 @@ public class UserDaoService {
 
     public void deleteById(Integer id) {
         Predicate<? super User> predicate = user -> user.getId().equals(id);
-        users.removeIf(predicate);
+        boolean removed = users.removeIf(predicate);
+
+        if (!removed) {
+            throw new UserNotFoundException(String.format("User with id %d not found", id));
+        }
 
     }
 
