@@ -1,10 +1,9 @@
 package com.restful_webservices.rest.helloworld;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
@@ -13,6 +12,7 @@ public class User {
     private Integer id;
 
     @NotBlank(message = "Name cannot be empty")
+    @JsonProperty("user_name")
     @Size(min = 3, max = 50, message = "A Name should have minimum length of 3 characters")
     private String name;
 
