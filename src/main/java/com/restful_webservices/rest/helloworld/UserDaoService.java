@@ -1,5 +1,6 @@
 package com.restful_webservices.rest.helloworld;
 
+import com.restful_webservices.rest.user.User;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -41,7 +42,6 @@ public class UserDaoService {
         if (!removed) {
             throw new UserNotFoundException(String.format("User with id %d not found", id));
         }
-
     }
 
 

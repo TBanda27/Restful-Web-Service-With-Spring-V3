@@ -1,6 +1,8 @@
 package com.restful_webservices.rest.exceptions;
 
 import com.restful_webservices.rest.helloworld.UserNotFoundException;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -40,4 +42,6 @@ public class CustomizedResponseEntityExceptionHandler  extends ResponseEntityExc
 
         return new ResponseEntity<Object>(errorDetails, HttpStatus.BAD_REQUEST);
     }
+
+
 }

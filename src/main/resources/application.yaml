@@ -1,9 +1,33 @@
 spring:
   application:
     name: rest
+
+  security:
+    user:
+      name: username
+      password: password
+
   devtools:
     restart:
       enabled: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/social-media-database?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 20000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
 
 logging:
   level:

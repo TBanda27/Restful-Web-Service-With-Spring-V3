@@ -1,0 +1,2 @@
+Single line docker to create a new container and database
+docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=social-media-database -p 3306:3306 mysql:8.0

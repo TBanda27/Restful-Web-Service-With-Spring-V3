@@ -1,5 +1,6 @@
 package com.restful_webservices.rest.helloworld;
 
+import com.restful_webservices.rest.user.User;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -55,6 +56,5 @@ public class UserResource {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }
